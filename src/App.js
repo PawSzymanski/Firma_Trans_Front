@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Test1 from './components/Test1/Test1';
 
 export class App extends React.Component {
     state = {
@@ -21,7 +21,7 @@ export class App extends React.Component {
         return (
             <div>
                Testowa apka działa, teraz trzeba sie reacta nauczyć xD
-
+            <Test1 />
             </div>
         );
     }
