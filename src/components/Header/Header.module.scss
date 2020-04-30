@@ -1,0 +1,8 @@
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr auto auto;;
+  align-items: center;
+  justify-items: start;
+  padding: 30px 40px;
+  background-color: #566F94;
+}
