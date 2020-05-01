@@ -8,7 +8,6 @@ const Header = ({openModalFn}) => (
     <header className={styles.wrapper}>
         <i className="fas fa-route"></i>
         <Navigation/>
-        <Button  onClick={openModalFn}>Rejestracja</Button>
         <Button onClick={openModalFn}>Login</Button>
     </header>
 );

@@ -7,11 +7,10 @@ import Modal from "../../components/Modal";
 import MainPage from "../MainPage/MainPage";
 
 
-
 export class Root extends React.Component {
     state = {
-        contacts: [],
         isModalOpen: false,
+
     };
 
     componentDidMount() {
@@ -23,11 +22,19 @@ export class Root extends React.Component {
             });
 
     }
+    showLoginBox=()=>{
+        this.setState({isRegisterOpen:false, isLoginOpen:true});
+    }
+
+    showRegisterBox=()=>{
+        this.setState({isRegisterOpen:true, isLoginOpen:false});
+    }
 
     openModal = () => {
         this.setState({
             isModalOpen: true,
         })
+
     }
 
     closeModal = () => {
