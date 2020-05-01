@@ -1,8 +1,14 @@
 .wrapper{
   display: grid;
-  grid-template-columns: 1fr auto auto;;
+  grid-template-columns:  auto  1fr auto auto;
   align-items: center;
   justify-items: start;
   padding: 30px 40px;
-  background-color: #566F94;
+  background-color: #214258;
+
+  i{
+    color:white;
+    font-size:50px;
+  }
+
 }

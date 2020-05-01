@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-const Button=({children}) =>{
+const Button=({children,closeBtn,...props}) =>{
+
+    const buttonClass = closeBtn ? styles.closeBtn : styles.myButton;
 
         return (
-            <button className={styles.buttonStyle}>
+            <button className={buttonClass} {...props}>
                 {children}
             </button>
         );

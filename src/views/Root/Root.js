@@ -2,15 +2,16 @@ import React from 'react';
 import './Root.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ConnectionSearch from "../ConnectionSearch/ConnSearch"
-import MainPage from "../MainPage/MainPage";
 import Header from "../../components/Header/Header";
-
+import Modal from "../../components/Modal";
+import MainPage from "../MainPage/MainPage";
 
 
 
 export class Root extends React.Component {
     state = {
-        contacts: []
+        contacts: [],
+        isModalOpen: false,
     };
 
     componentDidMount() {
@@ -23,14 +24,29 @@ export class Root extends React.Component {
 
     }
 
+    openModal = () => {
+        this.setState({
+            isModalOpen: true,
+        })
+    }
+
+    closeModal = () => {
+        this.setState({
+            isModalOpen: false,
+        })
+    }
+
     render() {
+        const { isModalOpen } = this.state;
+
         return (
             <BrowserRouter>
-                <Header/>
+                <Header openModalFn={this.openModal} />
                 <Switch>
                     <Route exact path="/mainPage" component={MainPage} />
                     <Route path="/connSearch" component={ConnectionSearch} />
                 </Switch>
+                {isModalOpen && <Modal closeModalFn={this.closeModal} />}
             </BrowserRouter>
         );
     }
