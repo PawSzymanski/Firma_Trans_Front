@@ -5,7 +5,7 @@ import ConnectionSearch from "../ConnectionSearch/ConnSearch"
 import Header from "../../components/Header/Header";
 import Modal from "../../components/Modal";
 import MainPage from "../MainPage/MainPage";
-import AllUsers from "../AllUsers/AllUsers";
+import Users from "../Users/Users";
 
 
 export class Root extends React.Component {
@@ -53,7 +53,7 @@ export class Root extends React.Component {
                 <Switch>
                     <Route exact path="/mainPage" component={MainPage} />
                     <Route path="/connSearch" component={ConnectionSearch} />
-                    <Route path="/allUsers" component={AllUsers} />
+                    <Route path="/allUsers" component={Users} />
                 </Switch>
                 {isModalOpen && <Modal closeModalFn={this.closeModal} />}
             </BrowserRouter>

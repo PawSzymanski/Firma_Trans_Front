@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './MainPage.module.scss'
 
 class MainPage extends Component {
     // constructor(props){
@@ -17,8 +18,11 @@ class MainPage extends Component {
 
     render() {
         return (
-            <h1>Strona główna</h1>
-        );
+            <div className={styles.wrapper}>
+                <h1>Strona główna</h1>
+            </div>
+
+    );
     }
 }
 
