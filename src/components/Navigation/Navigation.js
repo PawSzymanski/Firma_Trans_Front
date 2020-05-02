@@ -33,8 +33,8 @@ class Navigation extends Component {
             </li>
               <li className={styles.navItem}>
                   <NavLink
-                      //activeClassName={styles.navItemLinkActive}
-                      className={styles.navItemLink} to="/">widok 3</NavLink>
+                      activeClassName={styles.navItemLinkActive}
+                      className={styles.navItemLink} to="/allUsers">Użytkownicy</NavLink>
               </li>
               <li className={styles.navItem}>
                   <NavLink
