@@ -10,7 +10,7 @@ class AllUsers extends Component {
      }
 
     componentDidMount() {
-        axios.get(`https://127.0.0.1:5000/api/clients/all`)
+        axios.get(`/api/clients/all`)
             .then(res => {
                 const users = res.data;
                 this.setState({ users });
@@ -27,7 +27,9 @@ class AllUsers extends Component {
 
     render() {
         return (
-            <h1>Użytkownicy</h1>
+            <ul>
+                {this.state.users.map(users => <li>{users}</li>)}
+            </ul>
         );
     }
 }
