@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from './Users.module.scss'
 import UserTable from '../../components/UserTable/UserTable'
 import RegisterForm from "../../components/LoginRegisterForm/RegisterForm";
+import Title from "../../components/Title/Title";
+
 
 class Users extends Component {
      constructor(props){
@@ -14,13 +16,11 @@ class Users extends Component {
     render() {
         return (
             <div className={styles.wrapper}>
-
-                <div className={styles.tableClass}>
-                    <UserTable/>
-                </div>
-                <div className={styles.addUserClass}>
+                <UserTable/>
+                <div>
                 <RegisterForm/>
                 </div>
+                <Title>Edycja użytkownika</Title>
             </div>
         );
     }

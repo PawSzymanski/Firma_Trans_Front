@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 class Users extends Component {
     constructor(props){
@@ -14,26 +15,32 @@ class Users extends Component {
         this.state = {
             users:[],
         };
+
     }
 
     componentDidMount() {
-        axios.get(`/api/clients/all`)
-            .then(res => {
-                const users = res.data;
-                this.setState({ users });
-                this.render();
-            })
-        {
-        }
-    }
+        this.getUsers();
 
+     }
+
+    getUsers=()=>{
+        axios.get(`/api/clients/all`)
+
+    .then(response => this.setState({ users: response.data }))
+
+    }
 
     render() {
         return (
+
             <TableContainer  component={Paper}>
+                <Typography  variant="h5" id="tableTitle" component="div">
+                    Użytkownicy
+                </Typography>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
+                            <TableCell align="right">ID</TableCell>
                             <TableCell align="right">Imie</TableCell>
                             <TableCell align="right">Nazwisko</TableCell>
                             <TableCell align="right">Login</TableCell>
@@ -44,9 +51,10 @@ class Users extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.state.users.map((users) => (
-                            <TableRow>
-                                <TableCell align="right">{users.name}</TableCell>
+                        {this.state.users.map((users,index) => (
+                            <TableRow key={index}>
+                                <TableCell  align="right">{users.id}</TableCell>
+                                <TableCell  align="right">{users.name}</TableCell>
                                 <TableCell align="right">{users.surname}</TableCell>
                                 <TableCell align="right">{users.login}</TableCell>
                                 <TableCell align="right">{users.password}</TableCell>
@@ -58,7 +66,6 @@ class Users extends Component {
                     </TableBody>
                 </Table>
             </TableContainer>
-
         );
     }
 }

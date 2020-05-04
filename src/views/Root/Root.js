@@ -3,15 +3,16 @@ import './Root.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ConnectionSearch from "../ConnectionSearch/ConnSearch"
 import Header from "../../components/Header/Header";
-import Modal from "../../components/Modal";
+import Modal from "../../components/Modal/Modal";
 import MainPage from "../MainPage/MainPage";
 import Users from "../Users/Users";
 
 
 export class Root extends React.Component {
     state = {
+        isLoginOpen: true,
+        isRegisterOpen: false,
         isModalOpen: false,
-
     };
 
     componentDidMount() {
@@ -23,19 +24,25 @@ export class Root extends React.Component {
             });
 
     }
-    showLoginBox=()=>{
-        this.setState({isRegisterOpen:false, isLoginOpen:true});
+
+    showLoginBox = () => {
+        this.setState({
+            isLoginOpen: true,
+            isRegisterOpen:false,
+        })
     }
 
     showRegisterBox=()=>{
-        this.setState({isRegisterOpen:true, isLoginOpen:false});
+        this.setState({
+            isRegisterOpen:true,
+            isLoginOpen:false
+        });
     }
 
     openModal = () => {
         this.setState({
             isModalOpen: true,
         })
-
     }
 
     closeModal = () => {
@@ -49,13 +56,18 @@ export class Root extends React.Component {
 
         return (
             <BrowserRouter>
-                <Header openModalFn={this.openModal} />
+                <Header openModalFn={this.openModal}
+                        openLogForm={this.showLoginBox}
+                        openRegForm={this.showRegisterBox}/>
                 <Switch>
                     <Route exact path="/mainPage" component={MainPage} />
                     <Route path="/connSearch" component={ConnectionSearch} />
                     <Route path="/allUsers" component={Users} />
                 </Switch>
-                {isModalOpen && <Modal closeModalFn={this.closeModal} />}
+                {isModalOpen && <Modal isLogOpen={this.state.isLoginOpen}
+                                       isRegOpen={this.state.isRegisterOpen}
+                                       closeModalFn={this.closeModal}/>}
+
             </BrowserRouter>
         );
     }

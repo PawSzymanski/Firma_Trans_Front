@@ -8,14 +8,6 @@ class Navigation extends Component {
     // this.state = {};
   // }
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
   render() {
     return (
@@ -39,7 +31,12 @@ class Navigation extends Component {
               <li className={styles.navItem}>
                   <NavLink
                       //activeClassName={styles.navItemLinkActive}
-                      className={styles.navItemLink} to="/">widok 4</NavLink>
+                      className={styles.navItemLink} to="/">Kursy</NavLink>
+              </li>
+              <li className={styles.navItem}>
+                  <NavLink
+                      //activeClassName={styles.navItemLinkActive}
+                      className={styles.navItemLink} to="/">Rezerwacje</NavLink>
               </li>
           </ul >
         </nav>

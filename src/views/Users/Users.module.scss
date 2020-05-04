@@ -1,23 +1,8 @@
 .wrapper{
-  position: relative;
-  margin-top: 0;
-  padding: 0;
-  width: 100%;
-
-
-
-  .tableClass{
-    padding: 2%;
-    width: 50%;
-
-  }
-
-  .addUserClass{
-    position: fixed;
-  top:25%;
-    left:70%;
-    text-align: center;
-
-  }
+  margin:2%;
+  display: grid;
+  grid-template-columns: 50%  25% 25%;
+  grid-template-rows: 80vh ;
+  justify-items: center;
 }
 

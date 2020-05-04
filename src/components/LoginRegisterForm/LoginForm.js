@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import styles from './LoginRegisterForm.module.scss'
-import Button from "../Button/Button";
+import TextField from "@material-ui/core/TextField";
+import ButtonUI from "../Button/ButtonUI";
+import styles from './Login.module.scss'
+import {makeStyles} from "@material-ui/core/styles";
 import Title from "../Title/Title";
+
+
+
+
 
 class LoginForm extends Component {
     constructor(props){
@@ -11,7 +17,6 @@ class LoginForm extends Component {
             login:'',
             password:'',
         };
-
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,19 +38,15 @@ class LoginForm extends Component {
         })
     }
 
+
     render() {
+
+
+
         return (
-            <form className={styles.wrapper} onSubmit={this.handleSubmit}>
-                <Title>Cześć, zaloguj się</Title>
-
-                <label htmlFor="username">Login</label>
-                <input type="text" name="login" value={this.state.login} onChange={this.handleInputChange} />
-
-                <label htmlFor="username">Hasło</label>
-                <input type="text" name="password" value={this.state.password} onChange={this.handleInputChange} />
-
-                <Button type="sumbit">Zatwierdź</Button>
-            </form>
+            <>
+                <Title>Logowanie</Title>
+            </>
         );
     }
 }
