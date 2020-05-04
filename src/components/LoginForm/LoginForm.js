@@ -3,9 +3,6 @@ import Title from "../Title/Title";
 import LoginFields from "./LoginFields";
 
 
-
-
-
 class LoginForm extends Component {
     constructor(props){
         super(props);

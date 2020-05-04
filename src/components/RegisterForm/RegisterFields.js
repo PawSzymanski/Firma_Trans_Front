@@ -2,8 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import ButtonUI from "../Button/ButtonUI";
-
-
+import Title from "../Title/Title";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +28,7 @@ const RegisterFields=({sumbitFn })=> {
 
     return (
         <>
+            <Title>Rejestracja użytkownika</Title>
         <form className={classes.root} noValidate autoComplete="off" onSubmit={sumbitFn}>
             <TextField type="text" id="standard-basic" label="Imię" />
             <TextField type="text" id="standard-basic" label="Nazwisko"/>
