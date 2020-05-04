@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import TextField from "@material-ui/core/TextField";
-import ButtonUI from "../Button/ButtonUI";
-import styles from './Login.module.scss'
-import {makeStyles} from "@material-ui/core/styles";
 import Title from "../Title/Title";
+import LoginFields from "./LoginFields";
 
 
 
@@ -46,6 +43,7 @@ class LoginForm extends Component {
         return (
             <>
                 <Title>Logowanie</Title>
+                <LoginFields/>
             </>
         );
     }

@@ -16,7 +16,7 @@ class Navigation extends Component {
             <li className={styles.navItem}>
               <NavLink exact
                        activeClassName={styles.navItemLinkActive}
-                       className={styles.navItemLink} to="/mainPage">Strona główna</NavLink>
+                       className={styles.navItemLink} to="/">Strona główna</NavLink>
             </li>
             <li className={styles.navItem}>
               <NavLink

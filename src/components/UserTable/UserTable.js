@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
 class Users extends Component {
     constructor(props){
@@ -21,12 +20,12 @@ class Users extends Component {
     componentDidMount() {
         this.getUsers();
 
-     }
+    }
 
     getUsers=()=>{
         axios.get(`/api/clients/all`)
 
-    .then(response => this.setState({ users: response.data }))
+            .then(response => this.setState({ users: response.data }))
 
     }
 
@@ -34,9 +33,6 @@ class Users extends Component {
         return (
 
             <TableContainer  component={Paper}>
-                <Typography  variant="h5" id="tableTitle" component="div">
-                    Użytkownicy
-                </Typography>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>

@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import ButtonUI from "../Button/ButtonUI";
 
+
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -11,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
             display:'flex',
             flexFlow:'column wrap',
             margin:'10px auto',
-
 
         },
 
@@ -22,9 +24,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const BasicTextFields=({sumbitFn })=> {
+const RegisterFields=({sumbitFn })=> {
     const classes = useStyles();
-
 
     return (
         <>
@@ -42,4 +43,4 @@ const BasicTextFields=({sumbitFn })=> {
     );
 }
 
-export default BasicTextFields;
+export default RegisterFields;

@@ -60,7 +60,7 @@ export class Root extends React.Component {
                         openLogForm={this.showLoginBox}
                         openRegForm={this.showRegisterBox}/>
                 <Switch>
-                    <Route exact path="/mainPage" component={MainPage} />
+                    <Route exact path="/" component={MainPage} />
                     <Route path="/connSearch" component={ConnectionSearch} />
                     <Route path="/allUsers" component={Users} />
                 </Switch>
