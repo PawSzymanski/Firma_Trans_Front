@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import RegisterFields from "./RegisterFields"
 import Title from "../Title/Title";
 
