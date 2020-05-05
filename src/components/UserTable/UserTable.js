@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
 
 class Users extends Component {
     constructor(props){
@@ -20,6 +21,7 @@ class Users extends Component {
         this.getUsers();
     }
 
+
     getUsers=()=>{
         axios.get(`/api/clients/all`)
             .then(response => this.setState({ users: response.data }))
@@ -27,7 +29,6 @@ class Users extends Component {
 
     render() {
         return (
-
             <TableContainer  component={Paper}>
                 <Table aria-label="simple table">
                     <TableHead>
@@ -62,7 +63,14 @@ class Users extends Component {
     }
 }
 
-export default Users;
+const mapStateToProps= state =>{
+    const { users2 } = state;
+    return { users2 };
+};
+
+export default connect(mapStateToProps)(Users);
+
+
 
 
 

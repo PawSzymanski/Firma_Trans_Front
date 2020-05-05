@@ -13,13 +13,14 @@ class Modal extends Component{
         };
     }
 
-    render() {
 
+    render() {
         return (
             <div className={styles.wrapper}>
                 <ButtonUI onClick={this.props.closeModalFn}>X</ButtonUI>
                 {this.props.isLogOpen && <LoginForm /> }
-                {this.props.isRegOpen && <RegisterForm closeModal={this.props.closeModalFn}/>}
+                {this.props.isRegOpen && <RegisterForm closeModal={this.props.closeModalFn}
+                                                        isopenModal={this.props.isRegOpen}/>}
 
             </div>
         );

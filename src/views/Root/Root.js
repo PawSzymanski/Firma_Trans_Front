@@ -8,6 +8,7 @@ import MainPage from "../MainPage/MainPage";
 import Users from "../Users/Users";
 
 
+
 export class Root extends React.Component {
     state = {
         isLoginOpen: true,
@@ -55,6 +56,7 @@ export class Root extends React.Component {
         const { isModalOpen } = this.state;
 
         return (
+
             <BrowserRouter>
                 <Header openModalFn={this.openModal}
                         openLogForm={this.showLoginBox}
@@ -69,6 +71,7 @@ export class Root extends React.Component {
                                        closeModalFn={this.closeModal}/>}
 
             </BrowserRouter>
+
         );
     }
 }
