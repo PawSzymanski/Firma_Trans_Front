@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styles from './Modal.module.scss';
 import ButtonUI from "../Button/ButtonUI";
 import LoginForm from "../LoginForm/LoginForm";
-import RegisterFields from "../RegisterForm/RegisterFields";
+import RegisterForm from "../RegisterForm/RegisterForm";
 
 class Modal extends Component{
 
@@ -19,7 +19,7 @@ class Modal extends Component{
             <div className={styles.wrapper}>
                 <ButtonUI onClick={this.props.closeModalFn}>X</ButtonUI>
                 {this.props.isLogOpen && <LoginForm /> }
-                {this.props.isRegOpen && <RegisterFields />}
+                {this.props.isRegOpen && <RegisterForm closeModal={this.props.closeModalFn}/>}
 
             </div>
         );

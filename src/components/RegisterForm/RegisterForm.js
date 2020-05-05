@@ -26,6 +26,7 @@ class RegisterForm extends Component {
             phone:event.target[6].value,
         });
         event.target.reset();
+        this.props.closeModal();
     };
 
 

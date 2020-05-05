@@ -14,19 +14,15 @@ class Users extends Component {
         this.state = {
             users:[],
         };
-
     }
 
     componentDidMount() {
         this.getUsers();
-
     }
 
     getUsers=()=>{
         axios.get(`/api/clients/all`)
-
             .then(response => this.setState({ users: response.data }))
-
     }
 
     render() {

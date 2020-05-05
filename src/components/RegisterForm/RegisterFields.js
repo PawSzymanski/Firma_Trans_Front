@@ -37,7 +37,7 @@ const RegisterFields=({sumbitFn })=> {
             <TextField type="text" id="standard-basic" label="E-mail" />
             <TextField type="date" label="Data urodzenia" className={classes.textField}  InputLabelProps={{shrink: true,}} />
             <TextField type="text" id="standard-basic" label="Telefon" />
-            <ButtonUI type="submit">Zatwierdź</ButtonUI>
+            <ButtonUI  type="submit">Zatwierdź</ButtonUI>
         </form>
             </>
     );

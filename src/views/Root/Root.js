@@ -15,15 +15,15 @@ export class Root extends React.Component {
         isModalOpen: false,
     };
 
-    componentDidMount() {
-        fetch("api/vehicle/2")
-            .then(res => res.json())
-            .then(json => {
-                this.setState({ contacts: json.results });
-                console.log(json);
-            });
-
-    }
+    // componentDidMount() {
+    //     fetch("api/vehicle/2")
+    //         .then(res => res.json())
+    //         .then(json => {
+    //             this.setState({ contacts: json.results });
+    //             console.log(json);
+    //         });
+    //
+    // }
 
     showLoginBox = () => {
         this.setState({
