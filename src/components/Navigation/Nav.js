@@ -27,6 +27,16 @@ class Nav extends Component {
                             activeClassName={styles.navItemLinkActive}
                             className={styles.navItemLink} to="/allUsers">Użytkownicy</NavLink>
                     </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/aaaa">Rezerwacje</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/bbbb">Program lojalnościowy</NavLink>
+                    </li>
                 </ul >
             </nav>
         );

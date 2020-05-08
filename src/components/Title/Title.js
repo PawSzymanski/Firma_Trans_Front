@@ -1,10 +1,17 @@
 import React from 'react';
 import styles from './Title.module.scss';
 
-const Title = ({children}) => (
-    <h1 className={styles.title}>
-        {children}
-    </h1>
-);
+const Title = ({children,secondary}) => {
+
+const titleClass = secondary ? styles.secondary : styles.title;
+
+return (
+    <>
+        <h1 className={titleClass}>
+            {children}
+        </h1>
+    </>
+)
+};
 
 export default Title;

@@ -1,4 +1,12 @@
 .wrapper{
+
+  i{
+    color:white;
+    font-size:80px;
+  }
+}
+
+.cardWrapper{
   display:grid;
   grid-template-columns: 25% 25% 25% 25%;
 }
