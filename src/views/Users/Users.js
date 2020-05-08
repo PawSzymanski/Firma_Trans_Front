@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styles from './Users.module.scss'
 import UserTable from '../../components/UserTable/UserTable'
+import {fetchUserDetails} from "../../actions";
+import {getProducts} from "../../reducers";
+import {connect} from "react-redux";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
-
-
 
 class Users extends Component {
      constructor(props){
@@ -13,22 +14,25 @@ class Users extends Component {
      };
      }
 
-
-
-
     render() {
         return (
             <div className={styles.wrapper}>
                 <UserTable />
-                <div>
-                <RegisterForm/>
-                </div>
+                <RegisterForm />
             </div>
         );
     }
 }
 
-export default Users;
+
+const mapDispatchToProps=dispatch=>({
+    fetchUserDetails:()=>dispatch(fetchUserDetails()),
+});
 
 
+const mapStateToProps = state=>({
+    users: getProducts(state),
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Users);
 

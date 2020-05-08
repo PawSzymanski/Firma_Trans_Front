@@ -6,14 +6,18 @@ import Header from "../../components/Header/Header";
 import Modal from "../../components/Modal/Modal";
 import MainPage from "../MainPage/MainPage";
 import Users from "../Users/Users";
+import {fetchUserDetails} from "../../actions";
+import {connect} from "react-redux";
+import rootReducer from "../../reducers";
+
 
 
 
 export class Root extends React.Component {
     state = {
+        isModalOpen: false,
         isLoginOpen: true,
         isRegisterOpen: false,
-        isModalOpen: false,
     };
 
     // componentDidMount() {
@@ -70,10 +74,15 @@ export class Root extends React.Component {
                                        isRegOpen={this.state.isRegisterOpen}
                                        closeModalFn={this.closeModal}/>}
 
+
             </BrowserRouter>
 
         );
     }
 }
 
+
 export default Root;
+
+
+

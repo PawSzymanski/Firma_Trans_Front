@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,24 +6,20 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { fetchUserDetails } from "../../actions";
+import {getProducts} from '../../reducers';
+
 
 class Users extends Component {
     constructor(props){
         super(props);
         this.state = {
-            users:[],
         };
     }
 
     componentDidMount() {
-        this.getUsers();
-    }
-
-
-    getUsers=()=>{
-        axios.get(`/api/clients/all`)
-            .then(response => this.setState({ users: response.data }))
+     this.props.fetchUserDetails();
     }
 
     render() {
@@ -44,7 +39,7 @@ class Users extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.state.users.map((users,index) => (
+                        {this.props.users.map((users,index) => (
                             <TableRow key={index}>
                                 <TableCell  align="right">{users.id}</TableCell>
                                 <TableCell  align="right">{users.name}</TableCell>
@@ -63,14 +58,13 @@ class Users extends Component {
     }
 }
 
-const mapStateToProps= state =>{
-    const { users2 } = state;
-    return { users2 };
-};
-
-export default connect(mapStateToProps)(Users);
+const mapDispatchToProps=dispatch=>({
+    fetchUserDetails:()=>dispatch(fetchUserDetails()),
+});
 
 
+const mapStateToProps = state=>({
+    users: getProducts(state),
+})
 
-
-
+export default connect(mapStateToProps,mapDispatchToProps)(Users);
