@@ -1,16 +1,13 @@
 import React from 'react';
 import './Root.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch   } from 'react-router-dom';
 import ConnectionSearch from "../ConnectionSearch/ConnSearch"
 import Header from "../../components/Header/Header";
 import Modal from "../../components/Modal/Modal";
-import MainPage from "../MainPage/MainPage";
 import Users from "../Users/Users";
-import {fetchUserDetails} from "../../actions";
+import MainPage from "../MainPage/MainPage";
+import Register from "../Register/Register";
 import {connect} from "react-redux";
-import rootReducer from "../../reducers";
-
-
 
 
 export class Root extends React.Component {
@@ -20,15 +17,6 @@ export class Root extends React.Component {
         isRegisterOpen: false,
     };
 
-    // componentDidMount() {
-    //     fetch("api/vehicle/2")
-    //         .then(res => res.json())
-    //         .then(json => {
-    //             this.setState({ contacts: json.results });
-    //             console.log(json);
-    //         });
-    //
-    // }
 
     showLoginBox = () => {
         this.setState({
@@ -56,33 +44,33 @@ export class Root extends React.Component {
         })
     }
 
+
     render() {
-        const { isModalOpen } = this.state;
 
         return (
 
             <BrowserRouter>
-                <Header openModalFn={this.openModal}
+                <Header
                         openLogForm={this.showLoginBox}
                         openRegForm={this.showRegisterBox}/>
-                <Switch>
-                    <Route exact path="/" component={MainPage} />
-                    <Route path="/connSearch" component={ConnectionSearch} />
-                    <Route path="/allUsers" component={Users} />
+                <Switch >
+                    <Route exact path="/"  component={MainPage}   />
+                    <Route  path="/connSearch" component={ConnectionSearch}  />
+                    <Route path="/allUsers"  component={Users}  />
+                    <Route  path="/register" component={Register}  />
                 </Switch>
-                {isModalOpen && <Modal isLogOpen={this.state.isLoginOpen}
-                                       isRegOpen={this.state.isRegisterOpen}
-                                       closeModalFn={this.closeModal}/>}
-
-
+                {this.props.isModalOpen && <Modal/>}
             </BrowserRouter>
 
         );
     }
 }
 
+function mapStateToProps(state) {
+    const { isModalOpen } = state
+    return { isModalOpen }
+}
 
-export default Root;
-
+export default connect(mapStateToProps,null)(Root);
 
 

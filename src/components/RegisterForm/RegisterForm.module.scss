@@ -1,5 +1,5 @@
 .Formik{
-  width: 30%;
+  width: 60%;
   margin: 50px auto 100px;
   display: flex;
   flex-direction: column;
@@ -7,8 +7,8 @@
   }
 
 .form {
-  width: 80%;
-  max-width: 350px;
+  width: 100%;
+  max-width: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +30,7 @@
   height: 3px;
   background: #214258;
   transition: 0.1s all;
+
 }
 
 .label {
@@ -49,11 +50,6 @@
   line-height: 22px;
   width: 100%;
   background: none;
-}
-
-.textarea {
-  resize: none;
-  min-height: 150px;
 }
 
 .input:focus{

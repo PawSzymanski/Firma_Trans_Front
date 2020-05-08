@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styles from './Users.module.scss'
-import UserTable from '../../components/UserTable/UserTable'
 import {fetchUserDetails} from "../../actions";
 import {getProducts} from "../../reducers";
 import {connect} from "react-redux";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import UserTable from "../../components/UserTable/UserTable";
 
 class Users extends Component {
      constructor(props){
@@ -14,10 +14,14 @@ class Users extends Component {
      };
      }
 
+    componentDidMount() {
+        this.props.fetchUserDetails();
+    }
+
     render() {
         return (
             <div className={styles.wrapper}>
-                <UserTable />
+                <UserTable/>
                 <RegisterForm />
             </div>
         );

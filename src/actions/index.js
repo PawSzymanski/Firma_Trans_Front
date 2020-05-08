@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {SET_DETAILS} from "./types";
+import {TGG_MODAL} from "./types";
 
 export function fetchUserDetails() {
     return function(dispatch) {
@@ -13,9 +14,18 @@ export function fetchUserDetails() {
 function setDetails(data) {
     return {
         type: SET_DETAILS,
-        payload: data
+        payload: data,
     };
 }
+
+export function toggleModal(data) {
+    return {
+        type: TGG_MODAL,
+        payload: data,
+    };
+}
+
+
 
 
 

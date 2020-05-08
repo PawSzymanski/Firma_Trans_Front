@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
-import styles from './Modal.module.scss';
-import ButtonUI from "../Button/ButtonUI";
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import React, { Component } from 'react';
+import styles from './Modal.module.scss'
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import {toggleModal} from "../../actions";
+import {connect} from "react-redux";
+//import ButtonUI from "../Button/ButtonUI";
 
-class Modal extends Component{
 
+
+class Modal extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -13,20 +15,24 @@ class Modal extends Component{
         };
     }
 
-
     render() {
         return (
             <div className={styles.wrapper}>
-                <ButtonUI onClick={this.props.closeModalFn}>X</ButtonUI>
-                {this.props.isLogOpen && <LoginForm /> }
-                {this.props.isRegOpen && <RegisterForm closeModal={this.props.closeModalFn}
-                                                        isopenModal={this.props.isRegOpen}/>}
+                <div className={styles.logo}/>
+                <div className={styles.form}>
+                    {/*<ButtonUI onClick={this.props.toggleModal}>X</ButtonUI>*/}
+                    <RegisterForm/>
 
+                </div>
             </div>
         );
     }
 }
 
+const mapDispatchToProps=dispatch=>({
+    toggleModal:()=>dispatch( toggleModal()),
+});
 
 
-export default Modal;
+export default connect(null,mapDispatchToProps)(Modal);
+
