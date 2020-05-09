@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './CardForm.css'
-
 
 
 const CardForm = ({children,description,src,title}) => (
     <div className="wrapper">
         <div className="card">
             <div className="image">
-                <img src={src} alt=""></img>
+                <img src={src} alt=""/>
             </div>
             <div className="title">
                 {title}

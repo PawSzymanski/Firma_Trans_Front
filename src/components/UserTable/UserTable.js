@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {getProducts} from "../../reducers";
+import {getUsers} from "../../reducers";
 import {connect} from "react-redux";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -27,6 +27,7 @@ const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
+
 
         },
     },
@@ -81,7 +82,7 @@ function CustomizedTables(props) {
 
 
 const mapStateToProps = state=>({
-    users: getProducts(state),
+    users: getUsers(state),
 })
 
 export default connect(mapStateToProps)(CustomizedTables);

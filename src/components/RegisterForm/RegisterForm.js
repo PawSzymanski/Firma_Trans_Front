@@ -1,7 +1,7 @@
 import React from "react";
 import {Formik, Form, Field} from 'formik';
 import axios from 'axios';
-import {fetchUserDetails,toggleModal} from "../../actions";
+import {fetchUserDetails, toggleModal, toggleRegister} from "../../actions";
 import {connect} from "react-redux";
 import styles from './RegisterForm.module.scss'
 import Title from '../Title/Title'
@@ -32,6 +32,7 @@ const RegisterForm =(props) =>(
                 if(props.isModalOpen)
                 {
                     props.toggleModal();
+                    props.toggleRegister();
                 }
             }}>
             {()=>(
@@ -80,6 +81,7 @@ const RegisterForm =(props) =>(
 const mapDispatchToProps=dispatch=>({
     fetchUserDetails:()=>dispatch(fetchUserDetails()),
     toggleModal:()=>dispatch(toggleModal()),
+    toggleRegister:()=>dispatch( toggleRegister()),
 });
 
 const mapStateToProps = (state) => {

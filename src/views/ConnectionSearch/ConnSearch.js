@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
+import {fetchRoadDetails} from "../../actions";
+import {connect} from "react-redux";
+import RoadTable from "../../components/RoadTable/RoadTable";
+import RoadForm from "../../components/RoadTable/RoadForm";
+import style from './ConnSearch.module.scss'
 
 class ConnSearch extends Component {
-    // constructor(props){
-    // super(props);
-    // this.state = {};
-    // }
 
-    // componentWillMount(){}
-    // componentDidMount(){}
-    // componentWillUnmount(){}
-
-    // componentWillReceiveProps(){}
-    // shouldComponentUpdate(){}
-    // componentWillUpdate(){}
-    // componentDidUpdate(){}
 
     render() {
         return (
-            <h1>Wyszukiwarka połączeń</h1>
+            <div className={style.wrapper}>
+                <RoadForm/>
+                <div className={style.tableWrapper} >
+                <RoadTable/>
+                </div>
+            </div>
         );
     }
 }
 
-export default ConnSearch;
+const mapDispatchToProps=dispatch=>({
+    fetchRoadDetails:()=>dispatch(fetchRoadDetails()),
+});
+
+
+
+export default connect(null,mapDispatchToProps)(ConnSearch);
