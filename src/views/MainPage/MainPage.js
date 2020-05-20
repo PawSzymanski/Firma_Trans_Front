@@ -8,10 +8,7 @@ import logo4 from '../../assets/AdobeStock_31.jpeg'
 import Title from "../../components/Title/Title";
 
 class MainPage extends Component {
-    // constructor(props){
-    // super(props);
-    // this.state = {};
-    // }
+
 
 
     render() {
