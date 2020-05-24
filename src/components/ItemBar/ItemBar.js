@@ -6,11 +6,9 @@ const ItemBar = ({children,isVisible}) => {
 
     return (
         <>
-
             <div className={isVisible ? styles.secondaryWrapper : styles.wrapper}>
                 {children}
             </div>
-
         </>
     )
 };

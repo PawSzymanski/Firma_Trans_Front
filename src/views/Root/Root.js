@@ -8,56 +8,29 @@ import Users from "../Users/Users";
 import MainPage from "../MainPage/MainPage";
 import Register from "../Register/Register";
 import {connect} from "react-redux";
+import Reservation from "../Reservation/Reservation";
 
 
 export class Root extends React.Component {
-    state = {
-        isModalOpen: false,
-        isLoginOpen: true,
-        isRegisterOpen: false,
-    };
+    constructor(props){
+        super(props);
+        this.state = {
 
-
-    showLoginBox = () => {
-        this.setState({
-            isLoginOpen: true,
-            isRegisterOpen:false,
-        })
+        };
     }
-
-    showRegisterBox=()=>{
-        this.setState({
-            isRegisterOpen:true,
-            isLoginOpen:false
-        });
-    }
-
-    openModal = () => {
-        this.setState({
-            isModalOpen: true,
-        })
-    }
-
-    closeModal = () => {
-        this.setState({
-            isModalOpen: false,
-        })
-    }
-
 
     render() {
 
         return (
 
             <BrowserRouter>
-                <Header
-                        openLogForm={this.showLoginBox}
-                        openRegForm={this.showRegisterBox}/>
+                <Header/>
                 <Switch >
                     <Route exact path="/"  component={MainPage}   />
                     <Route  path="/connSearch" component={ConnectionSearch}  />
                     <Route path="/allUsers"  component={Users}  />
                     <Route  path="/register" component={Register}  />
+                    <Route  path="/reservation" component={Reservation}  />
                 </Switch>
                 {this.props.isModalOpen && <Modal/>}
             </BrowserRouter>
@@ -66,10 +39,11 @@ export class Root extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { isModalOpen } = state
-    return { isModalOpen }
-}
+
+const mapStateToProps = ({isModalOpen }) => ({
+    isModalOpen,
+});
+
 
 export default connect(mapStateToProps,null)(Root);
 

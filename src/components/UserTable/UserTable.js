@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import {getUsers} from "../../reducers";
 import {connect} from "react-redux";
 
+
 const StyledTableCell = withStyles((theme) => ({
 
     head: {
@@ -30,6 +31,13 @@ const StyledTableRow = withStyles((theme) => ({
 
 
         },
+        '&:hover':{
+            backgroundColor:'#7AAFB1',
+            cursor:'pointer',
+        },
+        '&:active':{
+            backgroundColor:'#C3DBE3',
+        }
     },
 }))(TableRow);
 
@@ -42,7 +50,16 @@ const useStyles = makeStyles({
 });
 
 function CustomizedTables(props) {
-    const classes = useStyles();
+    const classes = useStyles()
+
+    const handleClick = (id,name,surname,login) => {
+        return (event) => {
+            console.log(`You clicked  id ${id} ${name} ${surname} ${login}`);
+
+
+        }
+
+    }
 
     return (
         <TableContainer component={Paper}>
@@ -57,11 +74,12 @@ function CustomizedTables(props) {
                         <StyledTableCell align="center">E-mail</StyledTableCell>
                         <StyledTableCell align="center">Data urodzenia</StyledTableCell>
                         <StyledTableCell align="center">Telefon</StyledTableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {props.users.map((users,index) => (
-                        <StyledTableRow key={index}>
+                        <StyledTableRow key={index} onClick={handleClick(users.id,users.name,users.surname,users.login)}>
                             <StyledTableCell component="th" scope="row">
                                 {users.id}
                             </StyledTableCell>
@@ -72,6 +90,7 @@ function CustomizedTables(props) {
                             <StyledTableCell align="center">{users.email}</StyledTableCell>
                             <StyledTableCell align="center">{users.birthday}</StyledTableCell>
                             <StyledTableCell align="center">{users.phone}</StyledTableCell>
+
                         </StyledTableRow>
                     ))}
                 </TableBody>

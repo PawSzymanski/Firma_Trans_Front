@@ -1,12 +1,11 @@
 .wrapper{
   display: grid;
-  grid-template-columns:  auto  1fr auto auto;
+  grid-template-columns:  auto  1fr auto auto auto;
   align-items: center;
   justify-items: start;
   padding: 30px 40px;
   background-color: #16333E;
   border-bottom: 5px solid #19615b;
-
 
   i{
     color:white;
@@ -15,3 +14,8 @@
 
 }
 
+p{
+  color:white;
+  padding-right: 50px;
+  font-weight: 700;
+}

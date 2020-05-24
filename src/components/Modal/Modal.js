@@ -5,8 +5,6 @@ import {toggleModal} from "../../actions";
 import {connect} from "react-redux";
 import LoginForm from "../RegisterForm/LoginForm";
 
-
-
 class Modal extends Component {
     constructor(props){
         super(props);

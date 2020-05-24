@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './Header.module.scss';
 import Nav from "../Navigation/Nav";
 import ButtonUI from "../Button/ButtonUI";
@@ -7,36 +7,41 @@ import {toggleLogin} from "../../actions";
 import {toggleRegister} from "../../actions";
 import {connect} from "react-redux";
 
-class Header extends Component{
+function Header (props) {
 
-    constructor(props){
-        super(props);
-        this.state = {
-
-        };
+    const openModalReg = () => {
+            props.toggleModal();
+            props.toggleRegister();
     }
 
-    openModalReg = () => {
-            this.props.toggleModal();
-            this.props.toggleRegister();
+    const openModalLog = () => {
+        props.toggleModal();
+        props.toggleLogin();
     }
 
-    openModalLog = () => {
-        this.props.toggleModal();
-        this.props.toggleLogin();
+    const logout=()=>{
+        localStorage.clear();
+        window.location.reload(false);
     }
 
-
-    render() {
         return (
             <header className={styles.wrapper}>
                 <i className="fas fa-route"/>
                 <Nav/>
-                <ButtonUI onClick={this.openModalLog}>Logowanie</ButtonUI>
-                <ButtonUI onClick={this.openModalReg}>Rejestracja</ButtonUI>
+                {props.isLogged ?
+                    <>
+                    <p>Zalogowano jako: {props.userLogin} o id: {this.props.userID}</p>
+                    <ButtonUI onClick={logout}>Wyloguj</ButtonUI>
+                    </>
+                    :
+                    <>
+                    <ButtonUI onClick={openModalLog}>Logowanie</ButtonUI>
+                    <ButtonUI onClick={openModalReg}>Rejestracja</ButtonUI>
+                    </>}
+
+
             </header>
         );
-    }
 }
 
 const mapDispatchToProps=dispatch=>({
@@ -45,8 +50,11 @@ const mapDispatchToProps=dispatch=>({
     toggleRegister:()=>dispatch( toggleRegister()),
 });
 
+const mapStateToProps = ({ userID = null,userLogin=null,isLogged }) => ({
+    userID,userLogin,isLogged
+});
 
-export default connect(null,mapDispatchToProps)(Header);
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
 
 
 

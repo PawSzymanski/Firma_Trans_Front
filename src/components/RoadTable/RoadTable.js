@@ -9,6 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {getRoad} from "../../reducers";
 import {connect} from "react-redux";
+import DialogUI from "../Dialog/DialogUI";
+import axios from "axios";
+import {toggleDialog} from "../../actions";
+
+
 
 const StyledTableCell = withStyles((theme) => ({
 
@@ -16,10 +21,12 @@ const StyledTableCell = withStyles((theme) => ({
         backgroundColor: '#19615b',
         color: theme.palette.common.white,
         fontWeight: '600',
-
     },
+
+
     body: {
         fontSize: 14,
+
     },
 }))(TableCell);
 
@@ -29,6 +36,13 @@ const StyledTableRow = withStyles((theme) => ({
             backgroundColor: theme.palette.action.hover,
 
         },
+        '&:hover':{
+            backgroundColor:'#7AAFB1',
+            cursor:'pointer',
+        },
+        '&:active':{
+            backgroundColor:'#C3DBE3',
+        }
     },
 }))(TableRow);
 
@@ -40,11 +54,30 @@ const useStyles = makeStyles({
     },
 });
 
+
 function RoadTable(props) {
     const classes = useStyles();
 
+    const handleClick = (id,userLogin) => {
+        return (event) => {
+            console.log(`You clicked  id ${id} ${userLogin}`);
+            props.toggleDialog();
+
+            axios.post('/api/reservation/make',
+                {
+                   "roadId": id,
+                   "clientName": userLogin
+                })
+                .then(()=>console.log("Success"))
+                .catch((err)=>console.log(err));
+        }
+
+    }
+
+
     return (
         <TableContainer component={Paper}>
+            <DialogUI/>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
@@ -60,7 +93,8 @@ function RoadTable(props) {
                 </TableHead>
                 <TableBody>
                     {props.road.map((road,index) => (
-                        <StyledTableRow key={index}>
+                        <StyledTableRow key={index}
+                                        onClick={handleClick(road.id,props.userLogin)}>
                             <StyledTableCell align="center">{road.startStop.name}</StyledTableCell>
                             <StyledTableCell align="center">{road.startStop.location}</StyledTableCell>
                             <StyledTableCell align="center">{road.startStop.coordinates}</StyledTableCell>
@@ -77,9 +111,14 @@ function RoadTable(props) {
     );
 }
 
+const mapDispatchToProps=dispatch=>({
+    toggleDialog:()=>dispatch(toggleDialog()),
+
+});
 
 const mapStateToProps = state=>({
     road: getRoad(state),
+    userLogin: state.userLogin,
 })
 
-export default connect(mapStateToProps)(RoadTable);
+export default connect(mapStateToProps,mapDispatchToProps)(RoadTable);

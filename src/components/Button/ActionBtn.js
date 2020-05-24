@@ -41,7 +41,7 @@ function ActionBtn(props) {
 }
 
 const mapDispatchToProps=dispatch=>({
-    toggleVisible:()=>dispatch( toggleVisible()),
+    toggleVisible:()=>dispatch(toggleVisible()),
 
 });
 

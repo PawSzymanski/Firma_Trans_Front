@@ -6,7 +6,10 @@ import ButtonUI from "../Button/ButtonUI";
 import Title from "../Title/Title";
 import {fetchRoadDetails} from "../../actions";
 
-const RoadForm =(props) =>(
+
+function RoadForm (props) {
+
+return (
     <div className={styles.wrapper}>
         <Title secondary >Wyszukaj połączenie</Title>
         <Formik
@@ -17,6 +20,17 @@ const RoadForm =(props) =>(
             onSubmit={async (values,{resetForm})=>{
 
                await props.fetchRoadDetails(values.startPoint,values.endPoint);
+
+                console.log(props.road.length)
+
+               if(Array.isArray(props.road) && props.road.length === 0) {
+
+                   console.log('brak połączeń');
+               }
+               else if(Array.isArray(props.road) && props.road.length > 0){
+
+                   console.log('są połączenia');
+            }
 
                 resetForm({});
             }}>
@@ -38,6 +52,7 @@ const RoadForm =(props) =>(
         </Formik>
     </div>
 )
+}
 
 const mapDispatchToProps=dispatch=>({
     fetchRoadDetails:(startPoint,endPoint)=>dispatch(fetchRoadDetails(startPoint,endPoint)),
@@ -48,6 +63,7 @@ const mapStateToProps = (state) => {
     return {
         startPointSTR: state.startPoint,
         endPointSTR: state.endPoint,
+        road: state.road,
     };
 };
 

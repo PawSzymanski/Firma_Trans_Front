@@ -9,8 +9,6 @@ import Title from "../../components/Title/Title";
 
 class MainPage extends Component {
 
-
-
     render() {
         return (
             <div className={styles.wrapper}>

@@ -5,13 +5,25 @@ import Root from './views/Root/Root';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import store from "./store";
+import { Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+
+const options = {
+    position: 'bottom left',
+    timeout: 5000,
+    offset: '20px',
+    transition: 'scale',
+
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-    <Root />
-    </Provider>
-  </React.StrictMode>,
+  <React.Fragment>
+      <AlertProvider template={AlertTemplate} {...options}>
+            <Provider store={store}>
+             <Root/>
+            </Provider>
+      </AlertProvider>
+  </React.Fragment>,
   document.getElementById('root')
 );
 
@@ -19,3 +31,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+

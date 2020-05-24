@@ -1,9 +1,4 @@
-import { SET_USERS} from "../actions/types";
-import {TGG_MODAL} from "../actions/types";
-import {TGG_REG} from "../actions/types";
-import {TGG_LOG} from "../actions/types";
-import {BAR_VIS} from "../actions/types";
-import {SET_ROAD} from "../actions/types";
+import {SET_USERS,TGG_MODAL,TGG_REG,TGG_LOG,BAR_VIS,SET_ROAD,AUTH_SUCCESS,SET_RESERVATION,TGG_DIALOG} from "../actions/types";
 
 const initialState = {
     users:[],
@@ -12,11 +7,26 @@ const initialState = {
     isLoginOpen:false,
     isVisible:false,
     road:[],
-
+    userID:'',
+    userLogin:'',
+    isLogged:false,
+    reservation:[],
+    isDialogOpen:false,
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        case AUTH_SUCCESS:
+            return {
+                ...state,
+                userID: action.payload.data.id,
+                userLogin: action.payload.data.login,
+                isLogged:!state.isLogged,
+            };
+        case SET_RESERVATION:
+            return {
+                ...state,
+                reservation: action.payload };
         case SET_USERS:
             return {
                 ...state,
@@ -25,6 +35,10 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 road: action.payload };
+        case TGG_DIALOG:
+            return {
+                ...state,
+                isDialogOpen: !state.isDialogOpen };
         case TGG_MODAL:
             return {
                 ...state,
@@ -49,5 +63,6 @@ const rootReducer = (state = initialState, action) => {
 
 export const getUsers = state => state.users;
 export const getRoad = state => state.road;
+export const setReservation = state => state.reservation;
 export default rootReducer;
 

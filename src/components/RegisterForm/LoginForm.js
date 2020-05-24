@@ -1,12 +1,16 @@
 import React from "react";
 import {Formik, Form, Field} from 'formik';
-import {toggleModal, toggleLogin} from "../../actions";
+import {toggleModal, toggleLogin, authenticateFn} from "../../actions";
 import {connect} from "react-redux";
 import styles from './RegisterForm.module.scss'
 import Title from '../Title/Title'
 import ButtonUI from "../Button/ButtonUI";
+import {useAlert} from 'react-alert'
 
-const LoginForm =(props) =>(
+function LoginForm (props) {
+    const alert = useAlert()
+
+return (
     <div className={styles.wrapper}>
         <Title>Logowanie użytkownika</Title>
         <Formik
@@ -18,8 +22,13 @@ const LoginForm =(props) =>(
                 resetForm({});
                 if(props.isModalOpen)
                 {
-                    props.toggleModal();
-                    props.toggleLogin();
+                    await props.authenticateFn(values.login,values.password)
+                        .then(() => {
+                            alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>zalogowano</div>)
+                        })
+                        .catch(() => {
+                            alert.error(<div style={{ textTransform: 'lowercase',textAlign:'center' }}>błędne hasło lub login</div>)
+                        });
                 }
             }}>
             {()=>(
@@ -39,10 +48,13 @@ const LoginForm =(props) =>(
             )}
         </Formik>
     </div>
-)
+);
+}
+
 const mapDispatchToProps=dispatch=>({
     toggleModal:()=>dispatch(toggleModal()),
     toggleLogin:()=>dispatch(toggleLogin()),
+    authenticateFn:(login,password)=>dispatch(authenticateFn(login,password)),
 });
 
 const mapStateToProps = (state) => {

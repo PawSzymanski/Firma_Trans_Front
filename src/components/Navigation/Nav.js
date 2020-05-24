@@ -3,10 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styles from './Nav.module.scss';
 
 class Nav extends Component {
-    // constructor(props){
-    // super(props);
-    // this.state = {};
-    // }
 
     render() {
         return (
@@ -30,7 +26,7 @@ class Nav extends Component {
                     <li className={styles.navItem}>
                         <NavLink
                             activeClassName={styles.navItemLinkActive}
-                            className={styles.navItemLink} to="/aaaa">Rezerwacje</NavLink>
+                            className={styles.navItemLink} to="/reservation">Rezerwacje</NavLink>
                     </li>
                     <li className={styles.navItem}>
                         <NavLink
