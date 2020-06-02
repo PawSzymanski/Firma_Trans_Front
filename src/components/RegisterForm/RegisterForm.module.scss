@@ -34,6 +34,11 @@
 
 }
 
+.formItemBarSecondary {
+  @extend .formItemBar;
+  background: black;
+}
+
 .label {
   color:white;
   position: absolute;
@@ -44,6 +49,11 @@
   z-index: -2;
 }
 
+.labelSecondary {
+  @extend .label;
+  color:black;
+}
+
 .input{
   color:white;
   font-size: 18px;
@@ -51,6 +61,17 @@
   line-height: 22px;
   width: 100%;
   background: none;
+
+  &:required {
+    border: none;
+    box-shadow: none;
+  }
+
+}
+
+.inputSecondary{
+  @extend .input;
+  color:black;
 }
 
 .input:focus{
@@ -63,11 +84,26 @@
   color:white;
 }
 
+.inputSecondary:focus + .labelSecondary{
+  top: -22px;
+  font-size: 13px;
+  color:black;
+}
+
 .input:not(:placeholder-shown) + .label{
+  top: -22px;
+  font-size: 13px;
+}
+
+.inputSecondary:not(:placeholder-shown) + .labelSecondary{
   top: -22px;
   font-size: 13px;
 }
 
 .input:focus ~ .formItemBar{
   background: white;
+}
+
+.inputSecondary:focus ~ .formItemBarSecondary{
+  background: #548D96;
 }

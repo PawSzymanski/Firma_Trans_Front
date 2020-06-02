@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import {getUsers} from "../../reducers";
 import {connect} from "react-redux";
 
-
 const StyledTableCell = withStyles((theme) => ({
 
     head: {
@@ -49,17 +48,8 @@ const useStyles = makeStyles({
     },
 });
 
-function CustomizedTables(props) {
+function UserTable(props) {
     const classes = useStyles()
-
-    const handleClick = (id,name,surname,login) => {
-        return (event) => {
-            console.log(`You clicked  id ${id} ${name} ${surname} ${login}`);
-
-
-        }
-
-    }
 
     return (
         <TableContainer component={Paper}>
@@ -74,12 +64,13 @@ function CustomizedTables(props) {
                         <StyledTableCell align="center">E-mail</StyledTableCell>
                         <StyledTableCell align="center">Data urodzenia</StyledTableCell>
                         <StyledTableCell align="center">Telefon</StyledTableCell>
-
+                        <StyledTableCell align="center">Rola</StyledTableCell>
+                        <StyledTableCell align="center">Punkty</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.users.map((users,index) => (
-                        <StyledTableRow key={index} onClick={handleClick(users.id,users.name,users.surname,users.login)}>
+                    {props.users.map((users,index)  => (
+                        <StyledTableRow key={index} onClick={props.handleFn(users.id,users.name,users.surname,users.login,users.password,users.email,users.birthday,users.phone,users.role.role)}>
                             <StyledTableCell component="th" scope="row">
                                 {users.id}
                             </StyledTableCell>
@@ -90,7 +81,8 @@ function CustomizedTables(props) {
                             <StyledTableCell align="center">{users.email}</StyledTableCell>
                             <StyledTableCell align="center">{users.birthday}</StyledTableCell>
                             <StyledTableCell align="center">{users.phone}</StyledTableCell>
-
+                            <StyledTableCell align="center">{users.role.role}</StyledTableCell>
+                            <StyledTableCell align="center">{users.points}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
@@ -99,9 +91,9 @@ function CustomizedTables(props) {
     );
 }
 
-
 const mapStateToProps = state=>({
     users: getUsers(state),
 })
 
-export default connect(mapStateToProps)(CustomizedTables);
+export default connect(mapStateToProps)(UserTable);
+

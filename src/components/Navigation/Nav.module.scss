@@ -27,3 +27,9 @@
 
   }
 }
+
+.navItemSecondary
+{
+  @extend .navItem;
+  border-right: 0px solid #80AAA6;
+}

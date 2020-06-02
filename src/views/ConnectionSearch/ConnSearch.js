@@ -33,7 +33,7 @@ const mapDispatchToProps=dispatch=>({
 
 const mapStateToProps = (state) => {
     return {
-        road: state.road,
+        roads: state.road,
     };
 };
 

@@ -9,3 +9,6 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const SET_RESERVATION = 'AUTH_FAILURE';
 export const TGG_DIALOG = 'TGG_DIALOG';
+export const SET_ALL_ROAD = 'SET_ALL_ROAD';
+export const LOG_OUT= 'LOG_OUT';
+export const SET_CONN= 'SET_CONN';

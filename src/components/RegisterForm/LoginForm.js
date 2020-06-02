@@ -22,24 +22,23 @@ return (
                 resetForm({});
                 if(props.isModalOpen)
                 {
-                    await props.authenticateFn(values.login,values.password)
-                        .then(() => {
-                            alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>zalogowano</div>)
-                        })
-                        .catch(() => {
-                            alert.error(<div style={{ textTransform: 'lowercase',textAlign:'center' }}>błędne hasło lub login</div>)
-                        });
+                    const response=await props.authenticateFn(values.login,values.password);
+
+                    response ?
+                        alert.success(<div style={{textTransform: 'lowercase', textAlign: 'center'}}>zalogowano</div>)
+                        :
+                        alert.error(<div style={{ textTransform: 'lowercase',textAlign:'center' }}>błędne hasło lub login</div>)
                 }
             }}>
             {()=>(
                 <Form className={styles.form} autoComplete="off">
                     <div className={styles.formItem}>
-                        <Field className={styles.input} name="login" type="text"  placeholder=" "/>
+                        <Field className={styles.input} name="login" type="text"  placeholder=" " required/>
                         <label className={styles.label} htmlFor="name">Login</label>
                         <div className={styles.formItemBar} />
                     </div>
                     <div className={styles.formItem}>
-                        <Field className={styles.input} name="password" type="password"  placeholder=" "/>
+                        <Field className={styles.input} name="password" type="password"  placeholder=" " required/>
                         <label className={styles.label} htmlFor="name">Hasło</label>
                         <div className={styles.formItemBar} />
                     </div>
@@ -58,7 +57,8 @@ const mapDispatchToProps=dispatch=>({
 });
 
 const mapStateToProps = (state) => {
-    return { isModalOpen: state.isModalOpen };
+    return { isModalOpen: state.isModalOpen,
+                isLogged: state.isLogged};
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);

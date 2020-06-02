@@ -5,11 +5,12 @@ import styles from '../RegisterForm/RegisterForm.module.scss'
 import ButtonUI from "../Button/ButtonUI";
 import Title from "../Title/Title";
 import {fetchRoadDetails} from "../../actions";
-
+import {useAlert} from "react-alert";
 
 function RoadForm (props) {
+    const alert = useAlert()
 
-return (
+    return (
     <div className={styles.wrapper}>
         <Title secondary >Wyszukaj połączenie</Title>
         <Formik
@@ -19,18 +20,12 @@ return (
             }}
             onSubmit={async (values,{resetForm})=>{
 
-               await props.fetchRoadDetails(values.startPoint,values.endPoint);
+                const response = await props.fetchRoadDetails(values.startPoint,values.endPoint);
 
-                console.log(props.road.length)
-
-               if(Array.isArray(props.road) && props.road.length === 0) {
-
-                   console.log('brak połączeń');
-               }
-               else if(Array.isArray(props.road) && props.road.length > 0){
-
-                   console.log('są połączenia');
-            }
+                response > 0 ?
+                    alert.success(<div style={{textTransform: 'lowercase', textAlign: 'center'}}>znaleziono połączenia</div>)
+                    :
+                    alert.error(<div style={{ textTransform: 'lowercase',textAlign:'center' }}>brak połączeń</div>)
 
                 resetForm({});
             }}>
@@ -51,8 +46,10 @@ return (
             )}
         </Formik>
     </div>
-)
+            )
 }
+
+
 
 const mapDispatchToProps=dispatch=>({
     fetchRoadDetails:(startPoint,endPoint)=>dispatch(fetchRoadDetails(startPoint,endPoint)),

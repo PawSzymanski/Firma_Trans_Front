@@ -1,5 +1,21 @@
 import axios from 'axios';
-import {SET_USERS,TGG_MODAL,TGG_REG,TGG_LOG,BAR_VIS,SET_ROAD,AUTH_REQUEST,AUTH_SUCCESS,AUTH_FAILURE,SET_RESERVATION,TGG_DIALOG} from "./types";
+import {
+    SET_USERS,
+    TGG_MODAL,
+    TGG_REG,
+    TGG_LOG,
+    BAR_VIS,
+    SET_ROAD,
+    AUTH_REQUEST,
+    AUTH_SUCCESS,
+    AUTH_FAILURE,
+    SET_RESERVATION,
+    TGG_DIALOG,
+    SET_ALL_ROAD,
+    LOG_OUT,
+    SET_CONN,
+} from "./types";
+
 
 export const authenticateFn = (login, password) => dispatch => {
     dispatch({ type: AUTH_REQUEST });
@@ -14,12 +30,13 @@ export const authenticateFn = (login, password) => dispatch => {
             dispatch(toggleLogin());
             console.log("Login success")
             dispatch({ type: AUTH_SUCCESS, payload });
+            return true;
         })
         .catch(err => {
             console.log(err);
-            alert.error('Wrong login or password')
             console.log('Wrong login or password')
             dispatch({ type: AUTH_FAILURE });
+            return false;
         });
 };
 
@@ -28,15 +45,29 @@ export function fetchReservationDetails(user) {
         return axios.get("/api/reservation/"+user)
             .then(({ data }) => {
                 dispatch(setReservation(data));
+            })
+            .catch(err => {
+                console.log(err)
             });
+
     };
 }
+
 function setReservation(data) {
     return {
         type: SET_RESERVATION,
         payload: data,
     };
 }
+
+
+export function isLogout(data) {
+    return {
+        type: LOG_OUT,
+        payload: data,
+    };
+}
+
 
 export function fetchUserDetails() {
     return function(dispatch) {
@@ -54,19 +85,18 @@ function setUser(data) {
     };
 }
 
-export function fetchRoadDetails(startPoint,endPoint) {
-    console.log(startPoint);
-    console.log(endPoint);
-    return function(dispatch) {
+export const fetchRoadDetails = (startPoint,endPoint) => dispatch =>{
         return axios.get("/api/connection/"+startPoint+"/to/"+endPoint)
             .then(({ data }) => {
                 dispatch(setRoad(data));
+                    return data.length > 0;
             })
             .catch(err => {
                 console.log(err)
             });
-    };
 }
+
+
 
 function setRoad(data) {
     return {
@@ -74,6 +104,45 @@ function setRoad(data) {
         payload: data,
     };
 }
+
+export function fetchAllRoadDetails() {
+    return async function(dispatch) {
+        return await axios.get("/api/connection/allTrips")
+            .then(({ data }) => {
+                dispatch(setAllRoad(data));
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    };
+}
+
+function setAllRoad(data) {
+    return {
+        type: SET_ALL_ROAD,
+        payload: data,
+    };
+}
+
+export function fetchAllConnection() {
+    return function (dispatch) {
+        return axios.get("/api/connection/allConnections")
+            .then(({data}) => {
+                dispatch(setAllConnection(data));
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+}
+
+function setAllConnection(data) {
+    return {
+        type: SET_CONN,
+        payload: data,
+    };
+}
+
 
 export function toggleModal(data) {
     return {
@@ -109,6 +178,7 @@ export function toggleVisible(data) {
         payload: data,
     };
 }
+
 
 
 

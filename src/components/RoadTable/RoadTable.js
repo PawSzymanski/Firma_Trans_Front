@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,8 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import {getRoad} from "../../reducers";
 import {connect} from "react-redux";
 import DialogUI from "../Dialog/DialogUI";
-import axios from "axios";
 import {toggleDialog} from "../../actions";
+import axios from "axios";
+import {useAlert} from "react-alert";
 
 
 
@@ -57,30 +58,38 @@ const useStyles = makeStyles({
 
 function RoadTable(props) {
     const classes = useStyles();
+    const alert = useAlert()
+
+    let [id_s] = useState('');
+    let [login_s] = useState('');
 
     const handleClick = (id,userLogin) => {
         return (event) => {
-            console.log(`You clicked  id ${id} ${userLogin}`);
             props.toggleDialog();
-
-            axios.post('/api/reservation/make',
-                {
-                   "roadId": id,
-                   "clientName": userLogin
-                })
-                .then(()=>console.log("Success"))
-                .catch((err)=>console.log(err));
+            id_s=id;
+            login_s=userLogin;
         }
 
+    }
+
+    const setReservation = () => {
+            axios.post('/api/reservation/make',
+                {
+                    "roadId": id_s,
+                    "clientName": login_s
+                })
+                .then(()=>alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>rezerwacja dokonana</div>))
+                .catch((err)=>console.log(err));
     }
 
 
     return (
         <TableContainer component={Paper}>
-            <DialogUI/>
+            <DialogUI setReservation={setReservation}/>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
+                        <StyledTableCell align="center">Data</StyledTableCell>
                         <StyledTableCell align="center">Startowy przystanek</StyledTableCell>
                         <StyledTableCell align="center">Lokalizacja</StyledTableCell>
                         <StyledTableCell align="center">Współrzędne</StyledTableCell>
@@ -94,15 +103,16 @@ function RoadTable(props) {
                 <TableBody>
                     {props.road.map((road,index) => (
                         <StyledTableRow key={index}
-                                        onClick={handleClick(road.id,props.userLogin)}>
-                            <StyledTableCell align="center">{road.startStop.name}</StyledTableCell>
-                            <StyledTableCell align="center">{road.startStop.location}</StyledTableCell>
-                            <StyledTableCell align="center">{road.startStop.coordinates}</StyledTableCell>
-                            <StyledTableCell align="center">{road.endStop.name}</StyledTableCell>
-                            <StyledTableCell align="center">{road.endStop.location}</StyledTableCell>
-                            <StyledTableCell align="center">{road.endStop.coordinates}</StyledTableCell>
-                            <StyledTableCell align="center">{road.price}</StyledTableCell>
-                            <StyledTableCell align="center">{road.distance} km</StyledTableCell>
+                                        onClick={handleClick(road.roadPart.id,props.userLogin)}>
+                            <StyledTableCell align="center">{road.roadDate}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.startStop.name}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.startStop.location}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.startStop.coordinates}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.endStop.name}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.endStop.location}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.endStop.coordinates}</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.price} zł</StyledTableCell>
+                            <StyledTableCell align="center">{road.roadPart.distance} km</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

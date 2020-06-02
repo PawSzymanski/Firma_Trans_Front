@@ -1,7 +1,6 @@
 import React from 'react';
 import './CardForm.css'
 
-
 const CardForm = ({children,description,src,title}) => (
     <div className="wrapper">
         <div className="card">
@@ -21,7 +20,6 @@ const CardForm = ({children,description,src,title}) => (
         </div>
     </div>
 );
-
 
 export default CardForm;
 

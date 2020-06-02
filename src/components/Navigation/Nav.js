@@ -1,17 +1,40 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Nav.module.scss';
+import {connect} from "react-redux";
 
 class Nav extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            Admin:'Admin_Role',
+            User:'User_Role',
+            Worker:'Worker_Role',
+        };
+    }
+    componentDidMount() {
+
+    }
 
     render() {
         return (
             <nav>
+                {this.props.userRole === "" &&
+                <ul className={styles.wrapper}>
+                    <li className={styles.navItemSecondary}>
+                        <NavLink exact
+                                 activeClassName={styles.navItemLinkActive}
+                                 className={styles.navItemLink} to="/dashboard">Strona główna</NavLink>
+                    </li>
+                </ul>
+                }
+
+                {this.props.userRole === this.state.Admin &&
                 <ul className={styles.wrapper}>
                     <li className={styles.navItem}>
                         <NavLink exact
                                  activeClassName={styles.navItemLinkActive}
-                                 className={styles.navItemLink} to="/">Strona główna</NavLink>
+                                 className={styles.navItemLink} to="/dashboard">Strona główna</NavLink>
                     </li>
                     <li className={styles.navItem}>
                         <NavLink
@@ -31,12 +54,78 @@ class Nav extends Component {
                     <li className={styles.navItem}>
                         <NavLink
                             activeClassName={styles.navItemLinkActive}
-                            className={styles.navItemLink} to="/bbbb">Program lojalnościowy</NavLink>
+                            className={styles.navItemLink} to="/loyality">Program lojalnościowy</NavLink>
                     </li>
-                </ul >
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/roads">Kursy</NavLink>
+                    </li>
+                </ul>
+                }
+
+                {this.props.userRole === this.state.User &&
+                <ul className={styles.wrapper}>
+                    <li className={styles.navItem}>
+                        <NavLink exact
+                                 activeClassName={styles.navItemLinkActive}
+                                 className={styles.navItemLink} to="/dashboard">Strona główna</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/connSearch">Wyszukiwarka połączeń</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/reservation">Rezerwacje</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/loyality">Program lojalnościowy</NavLink>
+                    </li>
+                </ul>
+                }
+
+                {this.props.userRole === this.state.Worker &&
+                <ul className={styles.wrapper}>
+                    <li className={styles.navItem}>
+                        <NavLink exact
+                                 activeClassName={styles.navItemLinkActive}
+                                 className={styles.navItemLink} to="/dashboard">Strona główna</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/connSearch">Wyszukiwarka połączeń</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/reservation">Rezerwacje</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/loyality">Program lojalnościowy</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/roads">Kursy</NavLink>
+                    </li>
+                </ul>
+                }
             </nav>
         );
     }
 }
 
-export default Nav;
+const mapStateToProps = state=>({
+    userRole:state.userRole,
+})
+
+export default connect(mapStateToProps,null)(Nav);
+

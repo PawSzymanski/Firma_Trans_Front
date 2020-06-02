@@ -9,12 +9,12 @@ class Reservation extends Component {
     constructor(props){
         super(props);
         this.state = {
-
         };
     }
 
-    componentDidMount() {
-        this.props.fetchReservationDetails(this.props.userLogin);
+    componentDidMount(){
+         this.props.fetchReservationDetails(this.props.userLogin);
+
     }
 
     render() {
@@ -36,6 +36,7 @@ const mapDispatchToProps=dispatch=>({
 
 const mapStateToProps = state=>({
     userLogin: state.userLogin,
+    userRole:state.userRole,
 })
 
 

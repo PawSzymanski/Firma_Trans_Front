@@ -8,30 +8,64 @@ import UserTable from "../../components/UserTable/UserTable";
 import ActionBtn from "../../components/Button/ActionBtn";
 import ItemBar from "../../components/ItemBar/ItemBar";
 
+const initialState = {
+    editUser: {
+        id:'',
+        name:'',
+        surname:'',
+        login:'',
+        password:'',
+        email:'',
+        birthday:'',
+        phone:'',
+    },};
+
 class Users extends Component {
      constructor(props){
      super(props);
      this.state = {
-
+        editUser: {
+            id:'',
+            name:'',
+            surname:'',
+            login:'',
+            password:'',
+            email:'',
+            birthday:'',
+            phone:'',
+        },
      };
+         this.state = initialState;
      }
 
     componentDidMount() {
         this.props.fetchUserDetails();
+
     }
 
-    toggleVisible=()=>{
-         return{
-             isVisible:!this.state.isVisible,
-         }
+    handleClick = (id,name,surname,login,password,email,birthday,phone, role ) => {
+        return (event) => {
+            console.log(`You clicked  id ${id} ${name} ${surname} ${login} ${password} ${email} ${birthday} ${phone} ${role}`);
+
+            this.setState(() => {
+                return {editUser: {id:id,name:name,surname:surname,login:login,password:password,email:email,birthday:birthday,phone:phone,role:{role:role}}};
+            }
+            );
+
+        }
+
+    }
+
+    resetBuilder=()=> {
+        this.setState(initialState);
     }
 
     render() {
         return (
             <div className={styles.wrapper}>
-                <UserTable/>
+                <UserTable handleFn={this.handleClick}/>
                <ItemBar >
-                       <RegisterForm />
+                       <RegisterForm resetFm={this.resetBuilder} {...this.state}/>
                </ItemBar>
                 <div className={styles.actBtn}>
                    <ActionBtn/>
@@ -41,11 +75,9 @@ class Users extends Component {
     }
 }
 
-
 const mapDispatchToProps=dispatch=>({
     fetchUserDetails:()=>dispatch(fetchUserDetails()),
 });
-
 
 const mapStateToProps = state=>({
     users: getUsers(state),

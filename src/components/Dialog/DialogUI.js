@@ -18,16 +18,22 @@ function DialogUI(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Rezerwacja dokonana"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Czy chcesz dokonać rezerwacji ?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Rezerwacja została dodana do Twojego profilu. <br/>
-                        Wszystkie rezerwacje możesz wyświetlić w zakładce "Rezerwacje"
+                        Po akceptacji rezerwacja zostanie dodana do konta. <br/>
+                        Wszystkie rezerwacje możesz wyświetlić w zakładce "Rezerwacje".
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={props.toggleDialog} color="primary" autoFocus>
-                        Zamknij
+                    <Button onClick={props.toggleDialog} color="primary">
+                        Odrzuć
+                    </Button>
+                    <Button onClick={() => {
+                        props.setReservation();
+                        props.toggleDialog();
+                    }} color="primary">
+                        Akceptuj
                     </Button>
                 </DialogActions>
             </Dialog>

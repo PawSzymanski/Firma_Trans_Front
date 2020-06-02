@@ -42,8 +42,6 @@ const useStyles = makeStyles({
     },
 });
 
-
-
 function ReservationTable(props) {
     const classes = useStyles();
 
@@ -52,9 +50,12 @@ function ReservationTable(props) {
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
+                        <StyledTableCell align="center">Data</StyledTableCell>
                         <StyledTableCell align="center">Klient</StyledTableCell>
                         <StyledTableCell align="center">Startowy przystanek</StyledTableCell>
+                        <StyledTableCell align="center">Startowy współrzędne</StyledTableCell>
                         <StyledTableCell align="center">Końcowy przystanek</StyledTableCell>
+                        <StyledTableCell align="center">Końcowy współrzędne</StyledTableCell>
                         <StyledTableCell align="center">Dystans</StyledTableCell>
                         <StyledTableCell align="center">Cena</StyledTableCell>
                         <StyledTableCell align="center">Status</StyledTableCell>
@@ -63,11 +64,14 @@ function ReservationTable(props) {
                 <TableBody>
                     {props.reservation.map((reservation,index) => (
                         <StyledTableRow key={index} >
+                            <StyledTableCell align="center">{reservation.road.roadDate}</StyledTableCell>
                             <StyledTableCell align="center">{reservation.clientName}</StyledTableCell>
-                            <StyledTableCell align="center">{reservation.road.startStop.name}</StyledTableCell>
-                            <StyledTableCell align="center">{reservation.road.endStop.name}</StyledTableCell>
-                            <StyledTableCell align="center">{reservation.road.distance} km</StyledTableCell>
-                            <StyledTableCell align="center">{reservation.road.price}</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.startStop.name}</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.startStop.coordinates}</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.endStop.name}</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.endStop.coordinates}</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.distance} km</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.price} zła</StyledTableCell>
                             <StyledTableCell align="center">{reservation.reservationStatus}</StyledTableCell>
                         </StyledTableRow>
                     ))}
@@ -76,7 +80,6 @@ function ReservationTable(props) {
         </TableContainer>
     );
 }
-
 
 const mapStateToProps = state=>({
     reservation: setReservation(state),

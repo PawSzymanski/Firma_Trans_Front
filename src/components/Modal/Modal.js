@@ -9,7 +9,16 @@ class Modal extends Component {
     constructor(props){
         super(props);
         this.state = {
-
+            editUser: {
+                id:'',
+                name:'',
+                surname:'',
+                login:'',
+                password:'',
+                email:'',
+                birthday:'',
+                phone:'',
+            },
         };
     }
 
@@ -20,7 +29,7 @@ class Modal extends Component {
                     this.props.isLoginOpen &&
                     <div className={styles.wrapper}>
                         <div className={styles.form}>
-                            <LoginForm/>
+                            <LoginForm />
                         </div>
                         <div className={styles.logo}/>
                     </div>
@@ -30,7 +39,7 @@ class Modal extends Component {
                     <div className={styles.secondaryWrapper}>
                         <div className={styles.secondaryLogo}/>
                         <div className={styles.secondaryForm}>
-                                        <RegisterForm/>
+                                        <RegisterForm {...this.state}/>
                         </div>
                     </div>
                 }
@@ -47,9 +56,8 @@ const mapDispatchToProps=dispatch=>({
 const mapStateToProps = (state) => {
     return {
         isRegisterOpen: state.isRegisterOpen,
-        isLoginOpen: state.isLoginOpen,
+        isLoginOpen: state.isLoginOpen
     };
-
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(Modal);
