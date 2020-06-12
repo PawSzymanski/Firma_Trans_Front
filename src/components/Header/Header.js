@@ -28,6 +28,7 @@ function Header(props) {
         props.isLogout();
         alert.show(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>wylogowano</div>)
     }
+
             return (
                 <header className={styles.wrapper}>
                     <i className="fas fa-route"/>

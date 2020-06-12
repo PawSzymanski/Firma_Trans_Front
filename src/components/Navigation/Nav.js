@@ -10,10 +10,8 @@ class Nav extends Component {
             Admin:'Admin_Role',
             User:'User_Role',
             Worker:'Worker_Role',
+            Office:'Office_Role',
         };
-    }
-    componentDidMount() {
-
     }
 
     render() {
@@ -99,17 +97,27 @@ class Nav extends Component {
                     <li className={styles.navItem}>
                         <NavLink
                             activeClassName={styles.navItemLinkActive}
+                            className={styles.navItemLink} to="/roads">Kursy</NavLink>
+                    </li>
+                </ul>
+                }
+
+                {this.props.userRole === this.state.Office &&
+                <ul className={styles.wrapper}>
+                    <li className={styles.navItem}>
+                        <NavLink exact
+                                 activeClassName={styles.navItemLinkActive}
+                                 className={styles.navItemLink} to="/dashboard">Strona główna</NavLink>
+                    </li>
+                    <li className={styles.navItem}>
+                        <NavLink
+                            activeClassName={styles.navItemLinkActive}
                             className={styles.navItemLink} to="/connSearch">Wyszukiwarka połączeń</NavLink>
                     </li>
                     <li className={styles.navItem}>
                         <NavLink
                             activeClassName={styles.navItemLinkActive}
                             className={styles.navItemLink} to="/reservation">Rezerwacje</NavLink>
-                    </li>
-                    <li className={styles.navItem}>
-                        <NavLink
-                            activeClassName={styles.navItemLinkActive}
-                            className={styles.navItemLink} to="/loyality">Program lojalnościowy</NavLink>
                     </li>
                     <li className={styles.navItem}>
                         <NavLink

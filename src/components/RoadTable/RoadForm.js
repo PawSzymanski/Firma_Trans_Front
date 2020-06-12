@@ -49,8 +49,6 @@ function RoadForm (props) {
             )
 }
 
-
-
 const mapDispatchToProps=dispatch=>({
     fetchRoadDetails:(startPoint,endPoint)=>dispatch(fetchRoadDetails(startPoint,endPoint)),
 });

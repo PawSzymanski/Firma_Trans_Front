@@ -13,32 +13,16 @@ class MainPage extends Component {
         return (
             <div className={styles.wrapper}>
 
-                <Title secondary><i className="fas fa-route"/> Lorem ipsum dolor sit...</Title>
+                <Title secondary><i className="fas fa-route"/> TRANSsport...</Title>
              <div className={styles.cardWrapper}>
-            <CardForm title={'Lorem ipsum'} src={logo1} description={'Description'}
-                                children={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, ' +
-                                'lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper' +
-                                ' justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id' +
-                                ' orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet ' +
-                                'lectus quis est congue mollis. Phasellus congue lacus eget neque.'}/>
-            <CardForm title={'Lorem ipsum'} src={logo2} description={'Description'}
-                                  children={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, ' +
-                                  'lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper' +
-                                  ' justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id' +
-                                  ' orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet ' +
-                                  'lectus quis est congue mollis. Phasellus congue lacus eget neque.'}/>
-            <CardForm title={'Lorem ipsum'} src={logo3} description={'Description'}
-                                  children={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, ' +
-                                  'lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper' +
-                                  ' justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id' +
-                                  ' orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet ' +
-                                  'lectus quis est congue mollis. Phasellus congue lacus eget neque.'}/>
-            <CardForm title={'Lorem ipsum'} src={logo4} description={'Description'}
-                                  children={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh augue, suscipit a, scelerisque sed, ' +
-                                  'lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper' +
-                                  ' justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id' +
-                                  ' orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet ' +
-                                  'lectus quis est congue mollis. Phasellus congue lacus eget neque.'}/>
+            <CardForm title={'Bezpieczeństwo'} src={logo1} description={'Bezpieczeństwo'}
+                                children={'Nasza firma oferuje...'}/>
+            <CardForm title={'Szybkość'} src={logo2} description={'Szybkość'}
+                                  children={'Nasza firma oferuje...'}/>
+            <CardForm title={'Niezawodność'} src={logo3} description={'Niezawodność'}
+                                  children={'Nasza firma oferuje...'}/>
+            <CardForm title={'Zadowolenie'} src={logo4} description={'Zadowolenie'}
+                                  children={'Nasza firma oferuje...'}/>
             </div>
             </div>
         );

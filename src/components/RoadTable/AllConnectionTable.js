@@ -12,7 +12,6 @@ import {connect} from "react-redux";
 import DialogConn from "../Dialog/DialogConn";
 import {toggleDialog, } from "../../actions";
 
-
 const StyledTableCell = withStyles((theme) => ({
 
     head: {
@@ -61,17 +60,16 @@ function AllConnectionTable(props) {
     let [id_c,startStop_c,endStop_c,distance_c] = useState([]);
 
     const handleClick = (id,startStop,endStop,distance) => {
-
             id_c=id;
             startStop_c=startStop;
             endStop_c=endStop;
             distance_c=distance;
-
     }
 
     const getConn = () =>{
         return [id_c,startStop_c,endStop_c,distance_c];
     }
+
     return (
         <TableContainer component={Paper}>
             <DialogConn getConn={getConn}/>

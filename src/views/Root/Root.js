@@ -6,7 +6,6 @@ import Header from "../../components/Header/Header";
 import Modal from "../../components/Modal/Modal";
 import Users from "../Users/Users";
 import MainPage from "../MainPage/MainPage";
-import Register from "../Register/Register";
 import Roads from "../Roads/Roads";
 import {connect} from "react-redux";
 import Reservation from "../Reservation/Reservation";
@@ -21,29 +20,22 @@ export class Root extends React.Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
 
         return (
-
             <BrowserRouter>
                 <Header/>
-                <Route>
+                <Route path="/">
                     {this.props.isLogged===false && <Redirect to="/dashboard"  />}
                     <Route exact path="/dashboard" component={MainPage}/>
                     <Route path="/connSearch" component={ConnectionSearch}  />
                     <Route path="/allUsers"  component={Users}  />
-                    <Route path="/register" component={Register}  />
                     <Route path="/reservation" component={Reservation}  />
                     <Route path="/loyality" component={Loyality}  />
                     <Route path="/roads" component={Roads}  />
                 </Route>
                 {this.props.isModalOpen && <Modal/>}
             </BrowserRouter>
-
         );
     }
 }

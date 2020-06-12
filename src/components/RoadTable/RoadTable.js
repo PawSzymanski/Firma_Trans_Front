@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,14 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {getRoad} from "../../reducers";
+import {getPoints, getRoad} from "../../reducers";
 import {connect} from "react-redux";
 import DialogUI from "../Dialog/DialogUI";
-import {toggleDialog} from "../../actions";
+import {fetchUserPoints, toggleDialog} from "../../actions";
 import axios from "axios";
 import {useAlert} from "react-alert";
-
-
 
 const StyledTableCell = withStyles((theme) => ({
 
@@ -56,7 +54,8 @@ const useStyles = makeStyles({
 });
 
 
-function RoadTable(props) {
+
+const  RoadTable = (props) => {
     const classes = useStyles();
     const alert = useAlert()
 
@@ -72,20 +71,54 @@ function RoadTable(props) {
 
     }
 
-    const setReservation = () => {
-            axios.post('/api/reservation/make',
-                {
-                    "roadId": id_s,
-                    "clientName": login_s
-                })
-                .then(()=>alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>rezerwacja dokonana</div>))
-                .catch((err)=>console.log(err));
+    const makeReservation=()=>{
+        axios.post('/api/reservation/make',
+            {
+                "roadId": id_s,
+                "clientName": login_s
+            })
+            .then(()=>alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>rezerwacja dokonana</div>))
+            .catch((err)=>console.log(err));
+
     }
 
+    const setReservation = async() => {
+
+        makeReservation();
+        await axios.post('/api/points/add',
+            {
+                "id": props.points.id,
+                "login": props.userLogin,
+                "points":props.points.points,
+            })
+            .then(()=>console.log("success"))
+            .catch((err)=>console.log(err));
+
+            props.fetchUserPoints(props.userLogin);
+    }
+
+    const setReservationByPoints = async() => {
+        if(props.points.points >499)
+        {
+        makeReservation();
+        await axios.post('api/points/use',
+            {
+                "id": props.points.id,
+                "login": props.userLogin,
+                "points":props.points.points,
+            })
+            .then(()=>console.log("success"))
+            .catch(()=>alert.error(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>za mało punktów</div>));
+
+        props.fetchUserPoints(props.userLogin);
+        }else{
+            alert.error(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>za mało punktów</div>)
+        }
+    }
 
     return (
         <TableContainer component={Paper}>
-            <DialogUI setReservation={setReservation}/>
+            <DialogUI setReservation={setReservation} setByPoints={setReservationByPoints}/>
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
@@ -123,12 +156,16 @@ function RoadTable(props) {
 
 const mapDispatchToProps=dispatch=>({
     toggleDialog:()=>dispatch(toggleDialog()),
-
+    fetchUserPoints:(user)=>dispatch(fetchUserPoints(user)),
 });
 
-const mapStateToProps = state=>({
-    road: getRoad(state),
-    userLogin: state.userLogin,
-})
+
+const mapStateToProps = state=>{
+    return{ road: getRoad(state),
+            userLogin: state.userLogin,
+            userID:state.userID,
+            points:getPoints(state)};
+
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(RoadTable);

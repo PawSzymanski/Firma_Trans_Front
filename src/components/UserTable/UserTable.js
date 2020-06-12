@@ -65,7 +65,6 @@ function UserTable(props) {
                         <StyledTableCell align="center">Data urodzenia</StyledTableCell>
                         <StyledTableCell align="center">Telefon</StyledTableCell>
                         <StyledTableCell align="center">Rola</StyledTableCell>
-                        <StyledTableCell align="center">Punkty</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -82,7 +81,6 @@ function UserTable(props) {
                             <StyledTableCell align="center">{users.birthday}</StyledTableCell>
                             <StyledTableCell align="center">{users.phone}</StyledTableCell>
                             <StyledTableCell align="center">{users.role.role}</StyledTableCell>
-                            <StyledTableCell align="center">{users.points}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

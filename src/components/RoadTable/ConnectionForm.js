@@ -1,6 +1,5 @@
 import React from "react";
 import {Formik, Form, Field} from 'formik';
-import {connect} from "react-redux";
 import styles from '../RegisterForm/RegisterForm.module.scss'
 import ButtonUI from "../Button/ButtonUI";
 
@@ -41,12 +40,5 @@ function ConnectionForm (props) {
     );
 }
 
-const mapDispatchToProps=dispatch=>({
 
-});
-
-const mapStateToProps = (state) => {
-
-};
-
-export default connect(null,null)(ConnectionForm);
+export default ConnectionForm;

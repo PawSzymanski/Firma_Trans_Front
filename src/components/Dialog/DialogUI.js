@@ -6,7 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from "react-redux";
-import {toggleDialog} from "../../actions";
+import {fetchUserPoints, toggleDialog} from "../../actions";
+import {getPoints} from "../../reducers";
 
 function DialogUI(props) {
 
@@ -30,6 +31,12 @@ function DialogUI(props) {
                         Odrzuć
                     </Button>
                     <Button onClick={() => {
+                        props.setByPoints();
+                        props.toggleDialog();
+                    }}color="secondary">
+                        Wykorzystaj punkty
+                    </Button>
+                    <Button onClick={() => {
                         props.setReservation();
                         props.toggleDialog();
                     }} color="primary">
@@ -43,12 +50,13 @@ function DialogUI(props) {
 
 const mapDispatchToProps=dispatch=>({
     toggleDialog:()=>dispatch(toggleDialog()),
-
+    fetchUserPoints:(user)=>dispatch(fetchUserPoints(user)),
 });
 
 const mapStateToProps = state=>({
     userLogin: state.userLogin,
     isDialogOpen: state.isDialogOpen,
+    points:getPoints(state),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(DialogUI);

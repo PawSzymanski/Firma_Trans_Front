@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import {connect} from "react-redux";
 import {setReservation} from "../../reducers";
 
-
 const StyledTableCell = withStyles((theme) => ({
 
     head: {
@@ -18,7 +17,6 @@ const StyledTableCell = withStyles((theme) => ({
         color: theme.palette.common.white,
         fontWeight: '600',
     },
-
 
     body: {
         fontSize: 14,
@@ -71,7 +69,7 @@ function ReservationTable(props) {
                             <StyledTableCell align="center">{reservation.road.roadPart.endStop.name}</StyledTableCell>
                             <StyledTableCell align="center">{reservation.road.roadPart.endStop.coordinates}</StyledTableCell>
                             <StyledTableCell align="center">{reservation.road.roadPart.distance} km</StyledTableCell>
-                            <StyledTableCell align="center">{reservation.road.roadPart.price} zła</StyledTableCell>
+                            <StyledTableCell align="center">{reservation.road.roadPart.price} zł</StyledTableCell>
                             <StyledTableCell align="center">{reservation.reservationStatus}</StyledTableCell>
                         </StyledTableRow>
                     ))}

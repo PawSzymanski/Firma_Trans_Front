@@ -14,6 +14,7 @@ import {
     SET_ALL_ROAD,
     LOG_OUT,
     SET_CONN,
+    SET_POINTS
 } from "./types";
 
 
@@ -25,7 +26,6 @@ export const authenticateFn = (login, password) => dispatch => {
             password,
         })
         .then(payload => {
-            console.log(payload);
             dispatch(toggleModal());
             dispatch(toggleLogin());
             console.log("Login success")
@@ -64,6 +64,26 @@ function setReservation(data) {
 export function isLogout(data) {
     return {
         type: LOG_OUT,
+        payload: data,
+    };
+}
+
+export const fetchUserPoints = (user)=> {
+    return function(dispatch) {
+        return axios.get("/api/points/get/"+user)
+            .then(({ data }) => {
+                dispatch(setPoints(data));
+            })
+            .catch(err => {
+                    console.log(err)
+                });
+    };
+
+}
+
+function setPoints(data) {
+    return {
+        type: SET_POINTS,
         payload: data,
     };
 }

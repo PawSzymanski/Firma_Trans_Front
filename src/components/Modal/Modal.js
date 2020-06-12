@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Modal.module.scss'
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import {toggleModal} from "../../actions";
+import {toggleLogin, toggleModal, toggleRegister} from "../../actions";
 import {connect} from "react-redux";
 import LoginForm from "../RegisterForm/LoginForm";
 
@@ -30,6 +30,10 @@ class Modal extends Component {
                     <div className={styles.wrapper}>
                         <div className={styles.form}>
                             <LoginForm />
+                            <p onClick={()=>{
+                                this.props.toggleModal();
+                                this.props.toggleLogin();
+                            }}>Zamknij logowanie</p>
                         </div>
                         <div className={styles.logo}/>
                     </div>
@@ -40,6 +44,10 @@ class Modal extends Component {
                         <div className={styles.secondaryLogo}/>
                         <div className={styles.secondaryForm}>
                                         <RegisterForm {...this.state}/>
+                            <p onClick={()=>{
+                                this.props.toggleModal();
+                                this.props.toggleRegister();
+                            }}>Zamknij rejestrację</p>
                         </div>
                     </div>
                 }
@@ -51,6 +59,8 @@ class Modal extends Component {
 
 const mapDispatchToProps=dispatch=>({
     toggleModal:()=>dispatch( toggleModal()),
+    toggleLogin:()=>dispatch( toggleLogin()),
+    toggleRegister:()=>dispatch( toggleRegister()),
 });
 
 const mapStateToProps = (state) => {

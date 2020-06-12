@@ -1,0 +1,66 @@
+.wrapper{
+  h2{
+    color:white;
+    text-align: center;
+    margin-top: 80px;
+    font-size: 30px;
+  }
+
+
+    p{
+      text-align: center;
+      margin-left: 30px;
+      margin-top:20px;
+    }
+
+
+  .gifts_wrapper{
+    height: 30vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    text-align: center;
+
+
+    .gifts{
+      border-top:2px solid white;
+      border-left:2px solid white;
+      height: 300px;
+      width: 300px;
+      margin: 30px auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer;
+    }
+
+    p{
+      margin-top: 280px;
+      padding: 0;
+      text-align: center;
+    }
+
+    .gifts1{
+     @extend .gifts;
+      background-image: url("../../assets/headsets-2858878_960_720.png");
+
+
+    }
+
+    .gifts2{
+      @extend .gifts;
+      background-image: url("../../assets/knife-3699336_960_720.webp");
+
+    }
+
+    .gifts3{
+      @extend .gifts;
+      background-image: url("../../assets/suv-873052_960_720.png");
+
+    }
+  }
+
+
+}
+
+

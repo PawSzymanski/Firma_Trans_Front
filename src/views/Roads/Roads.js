@@ -6,13 +6,13 @@ import styles from "../../views/Roads/Roads.module.scss";
 import AllConnectionTable from "../../components/RoadTable/AllConnectionTable";
 import Title from "../../components/Title/Title";
 
-
-class Roads extends Component {
+export class Roads extends Component {
     constructor(props){
         super(props);
         this.state = {
             Worker:'Worker_Role',
             Admin:'Admin_Role',
+            Office:'Office_Role',
         };
     }
 
@@ -25,7 +25,7 @@ class Roads extends Component {
     render() {
         return (
             <>
-            {this.props.userRole === this.state.Admin  &&
+            {((this.props.userRole === this.state.Admin) || (this.props.userRole === this.state.Office)) &&
 
             <div className={styles.wrapper}>
                 <div className={styles.roadTable}>
@@ -57,8 +57,8 @@ class Roads extends Component {
 
 
 const mapDispatchToProps=dispatch=>({
-    fetchAllRoadDetails:(user)=>dispatch(fetchAllRoadDetails(user)),
-    fetchAllConnection:(user)=>dispatch(fetchAllConnection(user)),
+    fetchAllRoadDetails:()=>dispatch(fetchAllRoadDetails()),
+    fetchAllConnection:()=>dispatch(fetchAllConnection()),
 });
 
 const mapStateToProps = state=>({

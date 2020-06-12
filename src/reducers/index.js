@@ -11,6 +11,7 @@ import {
     SET_ALL_ROAD,
     LOG_OUT,
     SET_CONN,
+    SET_POINTS,
 } from "../actions/types";
 
 const initialState = {
@@ -29,7 +30,7 @@ const initialState = {
     isDialogOpen:false,
     isRoadDialogOpen:false,
     userRole:'',
-
+    points:'',
 }
 
 const rootReducer =  (state = initialState, action) => {
@@ -49,6 +50,7 @@ const rootReducer =  (state = initialState, action) => {
                 userID: '',
                 userLogin: '',
                 isLogged:false,
+                reservation:[],
                 isRoadDialogOpen:false,
                 road:[]};
         case SET_RESERVATION:
@@ -60,13 +62,17 @@ const rootReducer =  (state = initialState, action) => {
                 ...state,
                 allConnection: action.payload };
         case SET_ALL_ROAD:
-            return Object.assign({}, state, {
+            return {
                 ...state,
-                allRoad: action.payload });
+                allRoad: action.payload };
         case SET_USERS:
             return {
                 ...state,
                 users: action.payload };
+        case SET_POINTS:
+            return {
+                ...state,
+                points: action.payload };
         case SET_ROAD:
             return {
                 ...state,
@@ -96,6 +102,7 @@ const rootReducer =  (state = initialState, action) => {
     }
 
 };
+export const getPoints = state => state.points;
 export const getConnection = state => state.allConnection;
 export const getUsers = state => state.users;
 export const getRoad = state => state.road;

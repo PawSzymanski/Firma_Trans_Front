@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {getAllRoad} from "../../reducers";
 import {connect} from "react-redux";
-import DialogUI from "../Dialog/DialogUI";
 
 const StyledTableCell = withStyles((theme) => ({
 
@@ -18,7 +17,7 @@ const StyledTableCell = withStyles((theme) => ({
         color: theme.palette.common.white,
         fontWeight: '600',
     },
-    
+
     body: {
         fontSize: 14,
 
@@ -77,12 +76,8 @@ function AllRoadTable(props) {
     );
 }
 
-const mapDispatchToProps=dispatch=>({
-
-});
-
 const mapStateToProps = state=>({
     allRoad: getAllRoad(state),
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(AllRoadTable);
+export default connect(mapStateToProps,null)(AllRoadTable);

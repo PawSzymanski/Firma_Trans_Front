@@ -18,9 +18,10 @@ const initialState = {
         email:'',
         birthday:'',
         phone:'',
+
     },};
 
-class Users extends Component {
+export class Users extends Component {
      constructor(props){
      super(props);
      this.state = {
@@ -33,6 +34,7 @@ class Users extends Component {
             email:'',
             birthday:'',
             phone:'',
+
         },
      };
          this.state = initialState;
@@ -45,10 +47,10 @@ class Users extends Component {
 
     handleClick = (id,name,surname,login,password,email,birthday,phone, role ) => {
         return (event) => {
-            console.log(`You clicked  id ${id} ${name} ${surname} ${login} ${password} ${email} ${birthday} ${phone} ${role}`);
+            // console.log(`You clicked  id ${id} ${name} ${surname} ${login} ${password} ${email} ${birthday} ${phone} ${role}`);
 
             this.setState(() => {
-                return {editUser: {id:id,name:name,surname:surname,login:login,password:password,email:email,birthday:birthday,phone:phone,role:{role:role}}};
+                return {editUser: {id:id,name:name,surname:surname,login:login,password:password,email:email,birthday:birthday,phone:phone,role:role}};
             }
             );
 

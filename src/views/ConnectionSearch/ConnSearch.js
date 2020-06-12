@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {fetchRoadDetails} from "../../actions";
+import {fetchRoadDetails, fetchUserPoints} from "../../actions";
 import {connect} from "react-redux";
 import RoadTable from "../../components/RoadTable/RoadTable";
 import RoadForm from "../../components/RoadTable/RoadForm";
 import style from './ConnSearch.module.scss'
+import {getPoints} from "../../reducers";
 
-class ConnSearch extends Component {
+export class ConnSearch extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -13,8 +14,11 @@ class ConnSearch extends Component {
         };
     }
 
-    render() {
+    componentDidMount() {
+       this.props.fetchUserPoints(this.props.userLogin);
+    }
 
+    render() {
         return (
             <div className={style.wrapper}>
                 <RoadForm />
@@ -29,11 +33,14 @@ class ConnSearch extends Component {
 
 const mapDispatchToProps=dispatch=>({
     fetchRoadDetails:()=>dispatch(fetchRoadDetails()),
+    fetchUserPoints:(user)=>dispatch(fetchUserPoints(user)),
 });
 
 const mapStateToProps = (state) => {
     return {
         roads: state.road,
+        points:getPoints(state),
+        userLogin: state.userLogin,
     };
 };
 

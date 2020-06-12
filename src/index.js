@@ -17,13 +17,11 @@ const options = {
 }
 
 ReactDOM.render(
-  <React.Fragment>
+    <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...options}>
-            <Provider store={store}>
              <Root/>
-            </Provider>
       </AlertProvider>
-  </React.Fragment>,
+    </Provider>,
   document.getElementById('root')
 );
 

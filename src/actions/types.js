@@ -12,3 +12,4 @@ export const TGG_DIALOG = 'TGG_DIALOG';
 export const SET_ALL_ROAD = 'SET_ALL_ROAD';
 export const LOG_OUT= 'LOG_OUT';
 export const SET_CONN= 'SET_CONN';
+export const SET_POINTS= 'SET_POINTS';

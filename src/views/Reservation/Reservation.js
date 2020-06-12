@@ -5,7 +5,7 @@ import ReservationTable from "../../components/ReservationTable/ReservationTable
 import style from "../ConnectionSearch/ConnSearch.module.scss";
 import Title from "../../components/Title/Title";
 
-class Reservation extends Component {
+export class Reservation extends Component {
     constructor(props){
         super(props);
         this.state = {

@@ -58,7 +58,7 @@ const mapDispatchToProps=dispatch=>({
 
 const mapStateToProps = (state) => {
     return { isModalOpen: state.isModalOpen,
-                isLogged: state.isLogged};
+             isLogged: state.isLogged};
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);

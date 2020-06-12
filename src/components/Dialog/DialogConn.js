@@ -90,8 +90,8 @@ function DialogConn(props) {
         });
     };
 
-    const setTrip = () => {
-        axios.post('/api/connection/add',
+    const setTrip = async() => {
+       await axios.post('/api/connection/add',
             {
                 "roadDate": state.date_c,
                 "vehicle": state.vehicle_c,
@@ -100,12 +100,10 @@ function DialogConn(props) {
             })
             .then(()=>alert.success(<div style={{ textTransform: 'lowercase', textAlign:'center' }}>Kurs dodany</div>))
             .catch((err)=>console.log(err));
-        state.date_c='';
-        state.vehicle_c='';
-        state.driver_c='';
-        props.fetchAllRoadDetails();
-        window.location.reload(false);
-
+                    state.date_c='';
+                    state.vehicle_c='';
+                    state.driver_c='';
+                    props.fetchAllRoadDetails();
     }
 
     return (
